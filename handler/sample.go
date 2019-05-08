@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/bookun/consideration-of-logger/util"
-	"go.uber.org/zap"
+	"github.com/bookun/consideration-of-logger/logger"
 )
 
 type Handler struct {
@@ -14,6 +13,6 @@ type Handler struct {
 }
 
 func (h *Handler) Sample(w http.ResponseWriter, r *http.Request) {
-	util.Logger.Info("handler", zap.String("handler", "hello sample"))
+	logger.Info("handler", "handler", "hello sample")
 	fmt.Fprintln(w, h.Hoge)
 }

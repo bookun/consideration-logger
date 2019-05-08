@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/bookun/consideration-of-logger/handler"
+	"github.com/bookun/consideration-of-logger/logger"
 	"github.com/bookun/consideration-of-logger/middleware"
-	"github.com/bookun/consideration-of-logger/util"
 	"go.uber.org/zap"
 )
 
@@ -22,7 +22,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	util.Logger = myZap
+	logger.Logger = myZap
 	if err := run(); err != nil {
 		log.Fatal(err)
 	}
