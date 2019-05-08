@@ -8,7 +8,9 @@ import (
 
 func Process2(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		logger.Error("m2", "m2", "hello m2")
+		logMap := make(map[string]string)
+		logMap["m2"] = "hello p2"
+		logger.Error("m2", logMap)
 		next.ServeHTTP(w, r)
 	}
 }

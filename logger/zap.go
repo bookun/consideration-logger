@@ -1,13 +1,24 @@
 package logger
 
-import "go.uber.org/zap"
+import (
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
+)
 
 var Logger *zap.Logger
 
-func Info(tag, label, message string) {
-	Logger.Info(tag, zap.String(label, message))
+func Info(tag string, fields map[string]string) {
+	var zapStrings []zapcore.Field
+	for k, v := range fields {
+		zapStrings = append(zapStrings, zap.String(k, v))
+	}
+	Logger.Info(tag, zapStrings...)
 }
 
-func Error(tag, label, message string) {
-	Logger.Error(tag, zap.String(label, message))
+func Error(tag string, fields map[string]string) {
+	var zapStrings []zapcore.Field
+	for k, v := range fields {
+		zapStrings = append(zapStrings, zap.String(k, v))
+	}
+	Logger.Error(tag, zapStrings...)
 }
